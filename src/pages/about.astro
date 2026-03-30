@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import blogConfig from '../../blog.config.ts';
+---
+
+<BaseLayout title="About" description={`About ${blogConfig.name}`}>
+  <article class="prose prose-lg max-w-none">
+    <h1>About {blogConfig.name}</h1>
+    <p>
+      {blogConfig.name} is a niche publication covering {blogConfig.niche}.
+      We provide in-depth analysis, tutorials, and industry insights.
+    </p>
+    <h2>Who We Are</h2>
+    <p>
+      This blog is operated by <a href="https://flipfactory.it.com">FlipFactory</a>,
+      a Ukrainian AI automation agency. Our editorial team combines genuine industry
+      experience with AI-assisted research and writing.
+    </p>
+    <h2>Our Approach</h2>
+    <p>
+      We believe in full transparency about our content creation process.
+      Every article includes an AI disclosure.
+      <a href="/editorial-process">Read about our editorial process &rarr;</a>
+    </p>
+    <h2>Contact</h2>
+    <p>
+      Publisher: <a href="https://flipfactory.it.com">FlipFactory</a><br />
+      Powered by: <a href="https://flipfactory.it.com/flippress">FlipPress</a>
+    </p>
+  </article>
+</BaseLayout>

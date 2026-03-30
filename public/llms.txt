@@ -1,0 +1,16 @@
+# FlipPress Blog
+## About
+A niche blog about technology. Operated by FlipPress (FlipFactory).
+Content is AI-assisted with human editorial oversight.
+
+## Topics
+- Technology
+- AI
+
+## Editorial Process
+AI-assisted research and drafting with quality checks and human review.
+Learn more: /editorial-process
+
+## Contact
+Publisher: FlipFactory (https://flipfactory.it.com)
+Powered by: FlipPress

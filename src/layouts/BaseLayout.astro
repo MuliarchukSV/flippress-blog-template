@@ -1,0 +1,36 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import blogConfig from '../../blog.config.ts';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  article?: boolean;
+  pubDate?: Date;
+  updatedDate?: Date;
+}
+
+const props = Astro.props;
+---
+
+<!doctype html>
+<html lang={blogConfig.language}>
+  <head>
+    <BaseHead {...props} />
+    <style define:vars={{
+      'color-primary': blogConfig.colors.primary,
+      'color-accent': blogConfig.colors.accent,
+    }}></style>
+  </head>
+  <body class="min-h-screen flex flex-col bg-white text-gray-900">
+    <Header />
+    <main class="flex-1 max-w-4xl mx-auto px-4 py-8 w-full">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

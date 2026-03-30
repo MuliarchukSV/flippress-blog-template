@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import blogConfig from '../../blog.config.ts';
+---
+
+<BaseLayout title="Editorial Process" description={`How ${blogConfig.name} creates content`}>
+  <article class="prose prose-lg max-w-none">
+    <h1>Our Editorial Process</h1>
+    <p>{blogConfig.name} uses AI-assisted content creation with human oversight.</p>
+    <h2>Step 1: Source Discovery</h2>
+    <p>Our pipeline monitors leading tech publications and RSS feeds for relevant news in {blogConfig.niche}.</p>
+    <h2>Step 2: Relevance Filtering</h2>
+    <p>Each article is evaluated for relevance. Only articles scoring 7/10 or higher proceed.</p>
+    <h2>Step 3: AI-Assisted Drafting</h2>
+    <p>Claude AI generates an original analytical article — NOT a rewrite of the source.</p>
+    <h2>Step 4: Quality Scoring</h2>
+    <p>Every draft is scored. Articles below 8/10 are revised or rejected.</p>
+    <h2>Step 5: Publication</h2>
+    <p>Approved articles are published with full AI disclosure and structured data markup.</p>
+    <h2>Our Commitment</h2>
+    <ul>
+      <li>Full transparency about AI involvement</li>
+      <li>No fake personas or fabricated credentials</li>
+      <li>Original analysis, never content spinning</li>
+      <li>Proper source attribution</li>
+    </ul>
+  </article>
+</BaseLayout>

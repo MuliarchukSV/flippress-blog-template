@@ -1,0 +1,15 @@
+---
+import blogConfig from '../../blog.config.ts';
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-gray-50 border-t border-gray-100 mt-16">
+  <div class="max-w-4xl mx-auto px-4 py-8 text-center text-sm text-gray-500">
+    <p>
+      Powered by <a href="https://flipfactory.it.com/flippress" class="text-primary hover:underline">FlipPress</a>
+      &middot; AI-assisted content by
+      <a href="https://flipfactory.it.com" class="text-primary hover:underline">FlipFactory</a>
+    </p>
+    <p class="mt-2">&copy; {year} {blogConfig.name}. All rights reserved.</p>
+  </div>
+</footer>

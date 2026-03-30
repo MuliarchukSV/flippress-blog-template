@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  currentSlug: string;
+  tags: string[];
+  limit?: number;
+}
+
+const { currentSlug, tags, limit = 3 } = Astro.props;
+const allPosts = await getCollection('blog');
+const related = allPosts
+  .filter((post) => post.slug !== currentSlug)
+  .filter((post) => post.data.tags.some((tag: string) => tags.includes(tag)))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, limit);
+---
+
+{related.length > 0 && (
+  <section class="mt-12">
+    <h2 class="text-lg font-semibold mb-4">Related Articles</h2>
+    <ul class="space-y-3">
+      {related.map((post) => (
+        <li>
+          <a href={`/blog/${post.slug}`} class="text-primary hover:underline">
+            {post.data.title}
+          </a>
+          <span class="text-sm text-gray-400 ml-2">
+            {post.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+          </span>
+        </li>
+      ))}
+    </ul>
+  </section>
+)}

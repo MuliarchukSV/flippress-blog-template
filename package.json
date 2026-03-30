@@ -1,0 +1,21 @@
+{
+  "name": "flippress-blog-template",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^5.7.10",
+    "@astrojs/sitemap": "^3.3.1",
+    "@astrojs/rss": "^4.0.11",
+    "tailwindcss": "^4.1.4",
+    "@astrojs/tailwind": "^6.0.2",
+    "@tailwindcss/typography": "^0.5.16"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}

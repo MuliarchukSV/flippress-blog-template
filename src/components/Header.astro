@@ -1,0 +1,16 @@
+---
+import blogConfig from '../../blog.config.ts';
+---
+
+<header class="bg-white border-b border-gray-100">
+  <nav class="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
+    <a href="/" class="text-xl font-bold" style={`color: var(--color-primary)`}>
+      {blogConfig.name}
+    </a>
+    <div class="flex gap-6 text-sm text-gray-600">
+      <a href="/" class="hover:text-primary">Home</a>
+      <a href="/about" class="hover:text-primary">About</a>
+      <a href="/editorial-process" class="hover:text-primary">Editorial Process</a>
+    </div>
+  </nav>
+</header>
