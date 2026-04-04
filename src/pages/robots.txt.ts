@@ -1,4 +1,9 @@
-User-agent: *
+import type { APIContext } from 'astro';
+
+export async function GET(context: APIContext) {
+  const sitemapUrl = new URL('sitemap-index.xml', context.site);
+  return new Response(
+`User-agent: *
 Allow: /
 
 User-agent: GPTBot
@@ -22,4 +27,6 @@ Allow: /
 User-agent: Amazonbot
 Allow: /
 
-Sitemap: https://example.com/sitemap-index.xml
+Sitemap: ${sitemapUrl}
+`);
+}

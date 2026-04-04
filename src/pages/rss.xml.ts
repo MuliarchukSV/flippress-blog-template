@@ -1,8 +1,9 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
+import type { APIContext } from 'astro';
 import blogConfig from '../../blog.config.ts';
 
-export async function GET(context: any) {
+export async function GET(context: APIContext) {
   const posts = await getCollection('blog');
   return rss({
     title: blogConfig.name,
@@ -14,7 +15,7 @@ export async function GET(context: any) {
         title: post.data.title,
         pubDate: post.data.pubDate,
         description: post.data.description,
-        link: `/blog/${post.slug}/`,
+        link: `/blog/${post.id.replace(/\.mdx?$/, '')}/`,
       })),
   });
 }

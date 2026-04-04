@@ -48,6 +48,10 @@ const articleUrl = new URL(`/blog/${slug}`, Astro.site).toString();
     </header>
 
     <div class="article-summary">
+      <p>{description}</p>
+    </div>
+
+    <div class="article-content">
       <slot />
     </div>
 

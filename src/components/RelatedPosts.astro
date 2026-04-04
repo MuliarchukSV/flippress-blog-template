@@ -10,7 +10,7 @@ interface Props {
 const { currentSlug, tags, limit = 3 } = Astro.props;
 const allPosts = await getCollection('blog');
 const related = allPosts
-  .filter((post) => post.slug !== currentSlug)
+  .filter((post) => post.id.replace(/\.mdx?$/, '') !== currentSlug)
   .filter((post) => post.data.tags.some((tag: string) => tags.includes(tag)))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, limit);
@@ -22,7 +22,7 @@ const related = allPosts
     <ul class="space-y-3">
       {related.map((post) => (
         <li>
-          <a href={`/blog/${post.slug}`} class="text-primary hover:underline">
+          <a href={`/blog/${post.id.replace(/\.mdx?$/, '')}`} class="text-primary hover:underline">
             {post.data.title}
           </a>
           <span class="text-sm text-gray-400 ml-2">

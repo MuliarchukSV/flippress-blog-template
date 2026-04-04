@@ -12,6 +12,7 @@ interface Props {
 
 const { title, description, pubDate, updatedDate, author = "FlipFactory Editorial Team", url } = Astro.props;
 
+const isOrgAuthor = author === "FlipFactory Editorial Team";
 const schema = {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -20,11 +21,16 @@ const schema = {
   datePublished: pubDate.toISOString(),
   dateModified: (updatedDate || pubDate).toISOString(),
   url,
-  author: {
-    "@type": "Organization",
-    name: author,
-    url: "https://flipfactory.it.com",
-  },
+  author: isOrgAuthor
+    ? {
+        "@type": "Organization",
+        name: author,
+        url: "https://flipfactory.it.com",
+      }
+    : {
+        "@type": "Person",
+        name: author,
+      },
   publisher: {
     "@type": "Organization",
     name: "FlipPress",
