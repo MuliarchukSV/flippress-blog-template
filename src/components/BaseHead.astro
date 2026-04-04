@@ -13,6 +13,9 @@ interface Props {
 const { title, description, image, article = false, pubDate, updatedDate } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const fullTitle = `${title} | ${blogConfig.name}`;
+// Auto-generate OG image path from page URL: /blog/my-post/ → /og/my-post.png
+const slug = Astro.url.pathname.replace(/^\/blog\//, '').replace(/\/$/, '');
+const ogImage = image || (article && slug ? `/og/${slug}.png` : undefined);
 ---
 
 <meta charset="utf-8" />
@@ -28,11 +31,14 @@ const fullTitle = `${title} | ${blogConfig.name}`;
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:title" content={fullTitle} />
 <meta property="og:description" content={description} />
-{image && <meta property="og:image" content={new URL(image, Astro.site)} />}
+{ogImage && <meta property="og:image" content={new URL(ogImage, Astro.site)} />}
+{ogImage && <meta property="og:image:width" content="1200" />}
+{ogImage && <meta property="og:image:height" content="630" />}
 
-<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:card" content={ogImage ? "summary_large_image" : "summary"} />
 <meta name="twitter:title" content={fullTitle} />
 <meta name="twitter:description" content={description} />
+{ogImage && <meta name="twitter:image" content={new URL(ogImage, Astro.site)} />}
 
 {article && pubDate && <meta property="article:published_time" content={pubDate.toISOString()} />}
 {article && updatedDate && <meta property="article:modified_time" content={updatedDate.toISOString()} />}
