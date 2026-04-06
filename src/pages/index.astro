@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import WebSiteSchema from '../components/WebSiteSchema.astro';
 import blogConfig from '../../blog.config.ts';
 import { getCollection } from 'astro:content';
 
@@ -8,6 +9,8 @@ const posts = (await getCollection('blog'))
 ---
 
 <BaseLayout title="Home" description={blogConfig.description}>
+  <WebSiteSchema />
+
   <h1 class="text-3xl font-bold mb-8">{blogConfig.name}</h1>
   <p class="text-gray-600 mb-8">{blogConfig.description}</p>
 

@@ -1,0 +1,20 @@
+---
+interface Props {
+  takeaways: string[];
+}
+
+const { takeaways } = Astro.props;
+if (!takeaways || takeaways.length === 0) return;
+---
+
+<aside class="key-takeaways not-prose my-8 rounded-xl border border-[var(--color-primary,#6366f1)] bg-[color-mix(in_srgb,var(--color-primary,#6366f1)_8%,transparent)] px-6 py-5">
+  <p class="mb-3 text-xs font-bold uppercase tracking-widest text-[var(--color-primary,#6366f1)]">Key Takeaways</p>
+  <ul class="space-y-2">
+    {takeaways.map((point) => (
+      <li class="flex items-start gap-2 text-sm text-gray-800">
+        <span class="mt-0.5 shrink-0 text-[var(--color-primary,#6366f1)]">✓</span>
+        <span>{point}</span>
+      </li>
+    ))}
+  </ul>
+</aside>

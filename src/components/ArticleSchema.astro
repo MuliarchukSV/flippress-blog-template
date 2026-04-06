@@ -8,40 +8,78 @@ interface Props {
   updatedDate?: Date;
   author?: string;
   url: string;
+  tags?: string[];
+  image?: string;
+  wordCount?: number;
 }
 
-const { title, description, pubDate, updatedDate, author = "FlipFactory Editorial Team", url } = Astro.props;
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  author = blogConfig.author.name,
+  url,
+  tags = [],
+  image,
+  wordCount,
+} = Astro.props;
 
-const isOrgAuthor = author === "FlipFactory Editorial Team";
+const ogImage = image
+  ? new URL(image, blogConfig.site).toString()
+  : undefined;
+
+const isOrgAuthor = author === blogConfig.author.name;
+
 const schema = {
   "@context": "https://schema.org",
   "@type": "Article",
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": url,
+  },
   headline: title,
   description,
   datePublished: pubDate.toISOString(),
   dateModified: (updatedDate || pubDate).toISOString(),
   url,
+  ...(ogImage ? { image: { "@type": "ImageObject", url: ogImage, width: 1200, height: 630 } } : {}),
+  ...(wordCount ? { wordCount } : {}),
+  ...(tags.length > 0 ? { keywords: tags.join(", ") } : {}),
+  about: {
+    "@type": "Thing",
+    name: blogConfig.niche,
+  },
   author: isOrgAuthor
     ? {
         "@type": "Organization",
         name: author,
-        url: "https://flipfactory.it.com",
+        url: blogConfig.author.url,
+        sameAs: blogConfig.author.sameAs,
       }
     : {
         "@type": "Person",
         name: author,
+        url: blogConfig.author.url,
+        sameAs: blogConfig.author.sameAs,
       },
   publisher: {
     "@type": "Organization",
-    name: "FlipPress",
-    url: "https://flipfactory.it.com/flippress",
+    name: blogConfig.name,
+    url: blogConfig.site,
     parentOrganization: {
       "@type": "Organization",
       name: "FlipFactory",
+      url: "https://flipfactory.it.com",
+      sameAs: blogConfig.author.sameAs,
     },
   },
   isAccessibleForFree: true,
   inLanguage: blogConfig.language,
+  speakable: {
+    "@type": "SpeakableSpecification",
+    cssSelector: [".article-summary", ".key-takeaways", ".faq-answer", "h1"],
+  },
 };
 ---
 

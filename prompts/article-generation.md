@@ -18,8 +18,15 @@ STRUCTURE:
 - Title: compelling, keyword-rich, under 60 characters
 - TLDR: 2-3 sentences answering the core question (first 200 words)
 - 4-6 H2 sections, each 134-167 words, each a self-contained answer
+- 3-5 Key Takeaways: short, quotable, factual statements (for AI search citation)
 - 2-3 FAQ pairs at the end (question + 50-100 word answer)
 - Total: 1000-2000 words
+
+KEY TAKEAWAYS RULES (critical for AI search engines):
+- Each takeaway must be ONE specific, quotable statement (max 20 words)
+- Must contain a concrete fact, number, or clear position — NOT vague advice
+- Good: "MCP reduces Claude API integration time by 60-80% vs manual tool wrappers"
+- Bad: "MCP is important for AI developers to understand"
 
 AUTHOR: FlipFactory Editorial Team
 - Do NOT use first person singular ("I think...")
@@ -45,6 +52,10 @@ pubDate: "{{PUB_DATE}}"
 author: "FlipFactory Editorial Team"
 tags: ["tag1", "tag2", "tag3"]
 aiDisclosure: true
+takeaways:
+  - "[Specific quotable fact 1, max 20 words]"
+  - "[Specific quotable fact 2, max 20 words]"
+  - "[Specific quotable fact 3, max 20 words]"
 faq:
   - q: "[QUESTION]"
     a: "[ANSWER]"
