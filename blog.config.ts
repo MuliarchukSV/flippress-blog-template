@@ -1,17 +1,18 @@
 export interface BlogConfig {
   name: string;
   description: string;
+  homeTitle?: string;
   site: string;
   language: string;
   niche: string;
   colors: { primary: string; accent: string };
   analytics: { plausibleDomain: string };
-  author: {
+  author?: {
     name: string;
     url: string;
     sameAs: string[];
   };
-  product: {
+  product?: {
     name: string;
     url: string;
     description: string;

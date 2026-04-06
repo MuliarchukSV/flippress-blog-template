@@ -13,9 +13,9 @@ interface Props {
 const { title, description, image, article = false, pubDate, updatedDate } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const fullTitle = `${title} | ${blogConfig.name}`;
-// Auto-generate OG image path from page URL: /blog/my-post/ → /og/my-post.png
+// Auto-generate OG image: article → /og/{slug}.png, other pages → /og/og-default.png
 const slug = Astro.url.pathname.replace(/^\/blog\//, '').replace(/\/$/, '');
-const ogImage = image || (article && slug ? `/og/${slug}.png` : undefined);
+const ogImage = image || (article && slug ? `/og/${slug}.png` : '/og/og-default.png');
 ---
 
 <meta charset="utf-8" />

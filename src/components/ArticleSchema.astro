@@ -18,18 +18,22 @@ const {
   description,
   pubDate,
   updatedDate,
-  author = blogConfig.author.name,
+  author = blogConfig.author?.name ?? 'FlipFactory Editorial Team',
   url,
   tags = [],
   image,
   wordCount,
 } = Astro.props;
 
+// Use explicit image, or auto-generate from article slug as fallback
+const slugFromUrl = url.split('/blog/')[1]?.replace(/\/$/, '') ?? '';
 const ogImage = image
   ? new URL(image, blogConfig.site).toString()
-  : undefined;
+  : slugFromUrl
+    ? new URL(`/og/${slugFromUrl}.png`, blogConfig.site).toString()
+    : undefined;
 
-const isOrgAuthor = author === blogConfig.author.name;
+const isOrgAuthor = author === (blogConfig.author?.name ?? 'FlipFactory Editorial Team');
 
 const schema = {
   "@context": "https://schema.org",
@@ -54,14 +58,14 @@ const schema = {
     ? {
         "@type": "Organization",
         name: author,
-        url: blogConfig.author.url,
-        sameAs: blogConfig.author.sameAs,
+        url: blogConfig.author?.url ?? blogConfig.site,
+        sameAs: blogConfig.author?.sameAs ?? [],
       }
     : {
         "@type": "Person",
         name: author,
-        url: blogConfig.author.url,
-        sameAs: blogConfig.author.sameAs,
+        url: blogConfig.author?.url ?? blogConfig.site,
+        sameAs: blogConfig.author?.sameAs ?? [],
       },
   publisher: {
     "@type": "Organization",
@@ -71,7 +75,7 @@ const schema = {
       "@type": "Organization",
       name: "FlipFactory",
       url: "https://flipfactory.it.com",
-      sameAs: blogConfig.author.sameAs,
+      sameAs: blogConfig.author?.sameAs ?? [],
     },
   },
   isAccessibleForFree: true,

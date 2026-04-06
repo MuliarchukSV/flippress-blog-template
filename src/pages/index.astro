@@ -8,7 +8,7 @@ const posts = (await getCollection('blog'))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
-<BaseLayout title="Home" description={blogConfig.description}>
+<BaseLayout title={(blogConfig as any).homeTitle || blogConfig.name} description={blogConfig.description}>
   <WebSiteSchema />
 
   <h1 class="text-3xl font-bold mb-8">{blogConfig.name}</h1>

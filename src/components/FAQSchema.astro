@@ -1,19 +1,4 @@
 ---
-interface FAQItem { q: string; a: string; }
-interface Props { faq: FAQItem[]; }
-const { faq } = Astro.props;
-
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faq.map((item) => ({
-    "@type": "Question",
-    name: item.q,
-    acceptedAnswer: { "@type": "Answer", text: item.a },
-  })),
-};
+// FAQPage schema removed — restricted to gov/healthcare only since Aug 2023.
+// FAQ content still renders as HTML via BlogPost.astro.
 ---
-
-{faq.length > 0 && (
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-)}
