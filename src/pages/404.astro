@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import blogConfig from '../../blog.config.ts';
+import { getCollection } from 'astro:content';
+
+const recentPosts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+---
+
+<BaseLayout title="Page Not Found" description="The page you're looking for doesn't exist.">
+  <div class="text-center py-16">
+    <h1 class="text-6xl font-bold text-gray-300 mb-4">404</h1>
+    <p class="text-xl text-gray-600 mb-8">This page doesn't exist or has been moved.</p>
+    <a
+      href="/"
+      class="inline-block rounded-lg bg-[var(--color-primary,#6366f1)] px-6 py-3 text-white font-semibold hover:opacity-90 transition"
+    >
+      Back to Home
+    </a>
+  </div>
+
+  {recentPosts.length > 0 && (
+    <div class="mt-12 border-t border-gray-100 pt-8">
+      <h2 class="text-lg font-semibold text-gray-700 mb-4">Recent articles</h2>
+      <ul class="space-y-3">
+        {recentPosts.map((post) => (
+          <li>
+            <a
+              href={`/blog/${post.id.replace(/\.mdx?$/, '')}`}
+              class="text-[var(--color-primary,#6366f1)] hover:underline"
+            >
+              {post.data.title}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
+</BaseLayout>
