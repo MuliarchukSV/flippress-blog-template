@@ -6,3 +6,8 @@
   --color-primary: #6366f1;
   --color-accent: #22d3ee;
 }
+
+.article-content a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
