@@ -6,19 +6,25 @@ export async function GET(context: APIContext) {
 `User-agent: *
 Allow: /
 
-User-agent: GPTBot
+User-agent: OAI-SearchBot
 Allow: /
 
 User-agent: ChatGPT-User
 Allow: /
 
-User-agent: Google-Extended
+User-agent: GPTBot
 Allow: /
 
 User-agent: PerplexityBot
 Allow: /
 
+User-agent: Google-Extended
+Allow: /
+
 User-agent: ClaudeBot
+Allow: /
+
+User-agent: CCBot
 Allow: /
 
 User-agent: anthropic-ai
